@@ -1,21 +1,36 @@
 import React, { useState } from "react";
 
 export default function TextArea(propes) {
-    const [text, setText] = useState("Enter Some Text");
+    const [text, setText] = useState("");
+    const [previewText , setPreviewText] = useState("");
 
     const handleToUpperCase = ()=>{
         let newText = text.toUpperCase();
-        setText(newText);
+        setPreviewText(newText);
+    };
+
+    const handletoLowerCase = ()=>{
+      let newText = text.toLocaleLowerCase();
+      setPreviewText(newText);
     };
 
     const handleRequest = (event)=>{
         setText(event.target.value)
     }
-    //setText("Hello");
+
+    const handletoClearText = ()=>{
+      setPreviewText('');
+      setText('');
+    };
+
+    const handleToCopy = ()=>{
+      navigator.clipboard.writeText(document.getElementById("previewText").value);
+    };
   return (
-    <div>
+    <>
+    <div className="container"> 
       <div className="mb-3 my-3">
-        <h1>{propes.heading}</h1>
+        <h3>{propes.heading}</h3>
         <textarea
           className="form-control"
           id="myBox"  value = {text} onChange={handleRequest}
@@ -23,6 +38,22 @@ export default function TextArea(propes) {
         ></textarea>
       </div>
       <button className="btn btn-primary" onClick={handleToUpperCase}>Convert to UpperCase</button>
+      <button className="btn btn-primary mx-3" onClick={handletoLowerCase}>Conver To LowerCase</button>
+      <button className="btn btn-primary mx-3" onClick={handletoLowerCase}>Conver To LowerCase</button>
+      <button className="btn btn-primary mx-1" onClick={handletoClearText}>Clear Text</button>
+      <p className="my-3">{text.split(" ").length} Words and {text.length} Characters</p>
     </div>
+
+    <div className="container my-3">
+      <h3>Preview the Content</h3>
+      <textarea
+          className="form-control"
+          id="previewText"  value = {previewText}
+          rows="6"
+        ></textarea>
+        <button className="btn btn-primary my-3" onClick={handleToCopy}>Copy Text</button>
+    </div>
+
+    </>
   );
 }

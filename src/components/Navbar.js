@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 //rfc :- Shortcut fo the function based component
 export default function Navbar(propes) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {propes.title}
@@ -40,7 +40,7 @@ export default function Navbar(propes) {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button className="btn btn-primary" type="submit">
               Search
             </button>
           </form>
