@@ -4,9 +4,11 @@ import PropTypes from "prop-types";
 //rfc :- Shortcut fo the function based component
 export default function Navbar(propes) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav
+      className={`navbar navbar-expand-lg navbar-${propes.mode}} bg-${propes.mode}`}
+    >
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <a className={`navbar-brand text-${propes.mode === 'light'?'dark':'light'}`} href="/">
           {propes.title}
         </a>
         <button
@@ -23,17 +25,17 @@ export default function Navbar(propes) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <a className={`nav-link active text-${propes.mode === 'light'?'dark':'light'}`} aria-current="page" href="/">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <a className={`nav-link text-${propes.mode === 'light'?'dark':'light'}`} href="/">
                 {propes.about}
               </a>
             </li>
           </ul>
-          <form className="d-flex">
+          {/* <form className="d-flex">
             <input
               className="form-control me-2"
               type="search"
@@ -43,7 +45,18 @@ export default function Navbar(propes) {
             <button className="btn btn-primary" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
+          <div className={`form-check form-switch text-${propes.mode === 'light'?'dark':'light'}`}>
+            <input
+              className="form-check-input"
+              type="checkbox"
+              id="flexSwitchCheckDefault"
+              onClick={propes.toggleMode}
+            />
+            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+              Enable {propes.mode === 'light'?'Dark':'Light'} Mode
+            </label>
+          </div>
         </div>
       </div>
     </nav>
